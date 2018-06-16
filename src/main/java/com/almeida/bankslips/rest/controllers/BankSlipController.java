@@ -152,7 +152,7 @@ public class BankSlipController {
 	 * @throws ParseException
 	 */
 	@PutMapping(value = "/{id}")
-	ResponseEntity<Response<BankSlipDetailDto>> updateBanSlipStatus(@PathVariable("id") UUID id, 
+	ResponseEntity<Response<BankSlipDetailDto>> updateBankSlipStatus(@PathVariable("id") UUID id, 
 			@Valid @RequestBody BankSlipDetailDto bankSlipDetailDto, BindingResult result) throws ParseException{
 		log.info("updating BankSlip Status: {} ", bankSlipDetailDto.toString());
 		

@@ -14,7 +14,7 @@ Clone the repository:
 git clone https://github.com/Almeidinha/bankSlip-api
 Go inside the folder:
 
-cd bankSlip-api/
+cd bankSlip-api-master/
 Run the application:
 
 mvn clean install spring-boot:run
