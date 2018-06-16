@@ -1,6 +1,7 @@
 package com.almeida.bankslips.rest.services;
 
-import java.rmi.server.UID;
+import java.util.UUID;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -23,13 +24,26 @@ public interface BankSlipService {
 	
 	/**
 	 * 
+	 * 
+	 * @return
+	 */
+	List<BankSlip> findAll();
+	
+	/**
+	 * 
 	 * Return a BankSlip by ID
 	 * 
 	 * @param id
 	 * @return
 	 */
-	Optional<BankSlip> findById(UID id);
+	Optional<BankSlip> findById(UUID id);
 	
+	/**
+	 * 
+	 * @param customer
+	 * @return
+	 */
+	Optional<BankSlip> findByCustomer(String customer);
 	
 	/**
 	 * 
@@ -46,5 +60,5 @@ public interface BankSlipService {
 	 * 
 	 * @param id
 	 */
-	void remove(UID id);
+	void remove(UUID id);
 }

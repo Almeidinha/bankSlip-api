@@ -1,9 +1,10 @@
 package com.almeida.bankslips.rest.entities;
-
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.rmi.server.UID;
+import java.util.UUID;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import com.almeida.bankslips.rest.utils.BankSlipUtils;
 
 import com.almeida.bankslips.rest.enums.StatusEnum;
 
@@ -27,7 +29,7 @@ public class BankSlip implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private UID id;
+	private UUID id;
 	private Date dueDate;
 	private BigDecimal totalInCents;
 	private String customer;
@@ -38,10 +40,10 @@ public class BankSlip implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public UID getId() {
+	public UUID getId() {
 		return id;
 	}
-	public void setId(UID id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	
@@ -77,6 +79,11 @@ public class BankSlip implements Serializable {
 	}
 	public void setStatus(StatusEnum status) {
 		this.status = status;
+	}
+	
+	@Transient
+	public Optional<BigDecimal> getFine() {
+		return Optional.ofNullable(BankSlipUtils.getFineValue(totalInCents, dueDate));
 	}
 
 	@Override

@@ -7,6 +7,7 @@ public class Response<T> {
 
 	private T data;
 	private List<String> errors;
+	private List<String> messages;
 
 	public Response() {
 	}
@@ -29,5 +30,18 @@ public class Response<T> {
 	public void setErrors(List<String> errors) {
 		this.errors = errors;
 	}
+
+	public List<String> getMessages() {
+		if (this.messages == null) {
+			this.messages = new ArrayList<String>();
+		}
+		return messages;
+	}
+
+	public void setMessages(List<String> messages) {
+		this.messages = messages;
+	}
+	
+	
 
 }

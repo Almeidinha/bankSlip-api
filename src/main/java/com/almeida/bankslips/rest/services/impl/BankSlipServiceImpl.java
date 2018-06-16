@@ -1,6 +1,7 @@
 package com.almeida.bankslips.rest.services.impl;
 
-import java.rmi.server.UID;
+import java.util.UUID;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -27,9 +28,14 @@ public class BankSlipServiceImpl implements BankSlipService {
 		return this.bankSlipRepository.findAll(pageRequest);
 	}
 	
-	public Optional<BankSlip> findById(UID id){
+	public Optional<BankSlip> findById(UUID id){
 		log.info("Searching bankSlips of id {}", id);
 		return this.bankSlipRepository.findById(id);		
+	}
+	
+	public Optional<BankSlip> findByCustomer(String customer){
+		log.info("Searching bankSlips of Customer Name {}", customer);
+		return this.bankSlipRepository.findByCustomer(customer);		
 	}
 	
 	public BankSlip persist(BankSlip bankSlip) {
@@ -37,9 +43,14 @@ public class BankSlipServiceImpl implements BankSlipService {
 		return this.bankSlipRepository.save(bankSlip);
 	}
 	
-	public void remove(UID id) {
+	public void remove(UUID id) {
 		log.info("Removing bankSlip ID {}", id);
 		this.bankSlipRepository.deleteById(id);
+	}
+
+	public List<BankSlip> findAll() {
+		log.info("Searching for all bankSlips in the Database");
+		return this.bankSlipRepository.findAll();
 	}
 
 }
